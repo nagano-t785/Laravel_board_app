@@ -7,10 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model{
 
     // 新規投稿時に登録されるカラム内容
-    protected $fillable = ['user_name','content'];
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-
+    protected $fillable = ['user_name','contents',];
 }

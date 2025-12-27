@@ -70,19 +70,21 @@
                     <span class="font-semibold text-gray-800">
                         {{ $post->user_name }}
                     </span>
-                <!-- 投稿内容 -->
-                <div class="text-gray-900 leading-relaxed mb-1">
-                    {{ $post->contents }}
+                    <!-- 投稿内容 -->
+                    <div class="text-gray-900 leading-relaxed mb-1">
+                        {{ $post->contents }}
+                    </div>
+                    <!-- 投稿日時 -->
+                    <span class="text-sm text-gray-400">
+                        {{ $post->created_at->format('Y/m/d H:i') }}
+                    </span>
+                    <!-- 更新日時 -->
+                     @if($post->created_at !== $post->update_at)
+                        <span class="text-sm text-gray-400">
+                            ({{ $post->updated_at->format('Y/m/d H:i')}}更新)
+                        </span>
+                    @endif
                 </div>
-                <!-- 更新日時 -->
-                <span class="text-sm text-gray-400">
-                    {{ $post->updated_at->format('Y/m/d H:i')}}
-                </span>
-                <!-- 投稿日時 -->
-                <!-- <span class="text-sm text-gray-400">
-                    {{ $post->created_at->format('Y/m/d H:i') }}
-                </span> -->
-            </div>
 
                 <!-- 編集・削除 -->
                 @if($post->user_name === auth()->user()->name)

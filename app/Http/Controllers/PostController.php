@@ -58,11 +58,11 @@ class PostController extends Controller{
                 // ログインユーザー名を自動セット
                 'user_name' => auth()->user()->name,
                 // 投稿内容をDBに保存
-                'content' => $request -> content,
+                'contents' => $request -> content,
 
             // try-catchテスト用
-            // 'user_id' => null,
-            // 'content' => $request->content,
+            // 'user_name' => null,
+            // 'contents' => $request->content,
             ]);
 
             // 成功した場合
@@ -89,7 +89,7 @@ class PostController extends Controller{
 
     //★更新
     public function update(Request $request,Post $post){
-        $request->content([
+        $request->validate([
             'content' => [
 
                 // 空欄禁止
@@ -108,23 +108,9 @@ class PostController extends Controller{
 
         try{
             $post->update([
-                'content' => [
-
-                // 空欄禁止
-                'required',
-
-                // 文字列のみ
-                'string',
-
-                // 入力可能文字数（100文字以内）
-                'max:100',
-
-                // 空白のみ禁止
-                'regex:/\S/'
-                ],
-
+                'contents' => $request->content,
                 // try-catchのテスト用
-                // 'user_id' => null,
+                // 'user_name' => null,
             ]);
 
             // 成功時
